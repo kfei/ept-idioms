@@ -2,12 +2,18 @@
   <div id="app">
     <img src="./assets/logo.png">
     <hello></hello>
-    <button v-on:click="changeColor">Click me</button>
+    <ons-switch
+      @change="onChange"
+      :checked="switchState"
+    >
+    <div>
+      Switch is {{ switchState ? 'on' : 'off' }}
+    </div>
   </div>
 </template>
 
 <script>
-import $ from 'jquery';
+// import $ from 'jquery';
 import Hello from './components/Hello';
 
 export default {
@@ -15,11 +21,16 @@ export default {
   components: {
     Hello,
   },
+  data() {
+    return {
+      switchState: true,
+    };
+  },
   methods: {
-    changeColor: function changeColor() {
+    onChange: function onChange(event) {
       /* eslint-disable no-console */
       // console.log($(this.$el));
-      $(this.$el).css('background-color', 'grey');
+      this.switchState = event.target.checked;
     },
   },
 };
