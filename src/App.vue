@@ -1,29 +1,42 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
-    <ons-switch
-      @change="onChange"
-      :checked="switchState"
-    >
-    <div>
-      Switch is {{ switchState ? 'on' : 'off' }}
-    </div>
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button>
+            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">ept-idioms</div>
+      </ons-toolbar>
+      <img src="./assets/logo.png">
+      <index></index>
+      <p style="text-align: center">
+        <ons-button
+          @click="$notification.alert(message)"
+        >
+          Click me!
+        </ons-button>
+      </p>
+      <p style="height: 400px;">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum cumque placeat nostrum fuga ipsam eveniet ab incidunt perspiciatis laudantium, vel aut eligendi qui sed cum fugiat harum praesentium nesciunt.
+      </p>
+    </ons-page>
   </div>
 </template>
 
 <script>
 // import $ from 'jquery';
-import Hello from './components/Hello';
+import Index from './components/Index';
 
 export default {
   name: 'app',
   components: {
-    Hello,
+    Index,
   },
   data() {
     return {
-      switchState: true,
+      message: 'Hello world!',
     };
   },
   methods: {
