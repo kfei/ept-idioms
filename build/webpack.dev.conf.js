@@ -31,9 +31,7 @@ module.exports = merge(baseWebpackConfig, {
       inject: true
     }),
     new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'semantic-ui-css': 'semantic-ui-css'
+        $: 'jquery'
     })
   ]
 })
