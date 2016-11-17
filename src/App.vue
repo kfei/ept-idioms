@@ -13,8 +13,6 @@
       </md-button>
     </md-toolbar>
 
-    <img src="./assets/logo.png">
-
     <nav-menu ref="navMenu"></nav-menu>
 
     <content-view></content-view>

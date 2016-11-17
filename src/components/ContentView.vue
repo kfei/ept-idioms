@@ -1,21 +1,15 @@
 <template>
-  <div>
-    <h1>{{ msg }}</h1>
+  <div class="content-view">
+    content view block
   </div>
 </template>
 
 <script>
 export default {
   name: 'content-view',
-  data() {
-    return {
-      msg: 'Learn idioms',
-    };
-  },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
   font-weight: normal;
@@ -33,5 +27,10 @@ li {
 
 a {
   color: #42b983;
+}
+
+.content-view {
+  background-color: #eee;
+  height: 360px;
 }
 </style>

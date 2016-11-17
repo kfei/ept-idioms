@@ -1,37 +1,45 @@
 <template>
   <md-sidenav class="md-left" ref="sideNav">
-    <md-toolbar class="md-large">
-      <div class="md-toolbar-container">
-        <h3 class="md-title">Sidenav content</h3>
-      </div>
+    <md-toolbar>
+        <a>
+          <img src="../assets/logo.png" alt="logo">
+        </a>
     </md-toolbar>
 
     <md-list>
       <md-list-item>
-        <md-icon>whatshot</md-icon>
-        <span>News</span>
+        <md-icon>grain</md-icon>
+        <span>Random</span>
+      </md-list-item>
+
+      <md-list-item v-for="part in maxPart">
+        <md-icon>bookmark</md-icon>
+        <span>Part {{ part }}</span>
 
         <md-list-expand>
           <md-list>
-            <md-list-item class="md-inset">World</md-list-item>
-            <md-list-item class="md-inset">Americas</md-list-item>
-            <md-list-item class="md-inset">Europe</md-list-item>
+            <md-list-item class="md-inset" v-for="cls in maxClass">
+              Class {{ cls }}
+            </md-list-item>
           </md-list>
         </md-list-expand>
       </md-list-item>
-
-      <md-list-item>
-        <md-icon>shopping_basket</md-icon>
-        <span>Shop</span>
-      </md-list-item>
     </md-list>
-
   </md-sidenav>
 </template>
 
 <script>
+const MAXPART = 12;
+const MAXClASS = 10;
+
 export default {
   name: 'nav-menu',
+  data() {
+    return {
+      maxPart: MAXPART,
+      maxClass: MAXClASS,
+    };
+  },
   methods: {
     toggle() {
       this.$refs.sideNav.toggle();
@@ -40,5 +48,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.md-toolbar > a {
+  width: 100%;
+}
+.md-toolbar > a > img {
+  max-height: 64px;
+}
 </style>
