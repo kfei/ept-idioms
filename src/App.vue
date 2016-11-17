@@ -18,13 +18,10 @@
     <nav-menu ref="navMenu"></nav-menu>
 
     <content-view></content-view>
-
-    <button v-on:click="changeColor">Click me</button>
   </div>
 </template>
 
 <script>
-import $ from 'jquery';
 import ContentView from './components/ContentView';
 import NavMenu from './components/NavMenu';
 
@@ -37,11 +34,6 @@ export default {
   methods: {
     toggleNavMenu() {
       this.$refs.navMenu.toggle();
-    },
-    changeColor: function changeColor() {
-      /* eslint-disable no-console */
-      // console.log($(this.$el));
-      $(this.$el).css('background-color', 'grey');
     },
   },
 };
