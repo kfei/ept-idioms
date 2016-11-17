@@ -31,6 +31,6 @@ a {
 
 .content-view {
   background-color: #eee;
-  height: 360px;
+  padding: 15em 0;
 }
 </style>

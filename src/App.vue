@@ -1,33 +1,22 @@
 <template>
   <div id="app" v-md-theme="'default'">
-    <!-- Topbar -->
-    <md-toolbar style="border-bottom: 2px solid #eee;">
-      <md-button class="md-icon-button" @click="toggleNavMenu">
-        <md-icon>menu</md-icon>
-      </md-button>
-
-      <h2 class="md-title" style="flex: 1">ept-idioms</h2>
-
-      <md-button class="md-icon-button">
-        <md-icon>favorite</md-icon>
-      </md-button>
-    </md-toolbar>
-
+    <top-bar :toggle-nav-menu="toggleNavMenu"></top-bar>
     <nav-menu ref="navMenu"></nav-menu>
-
     <content-view></content-view>
   </div>
 </template>
 
 <script>
-import ContentView from './components/ContentView';
+import TopBar from './components/TopBar';
 import NavMenu from './components/NavMenu';
+import ContentView from './components/ContentView';
 
 export default {
   name: 'app',
   components: {
-    ContentView,
+    TopBar,
     NavMenu,
+    ContentView,
   },
   methods: {
     toggleNavMenu() {
