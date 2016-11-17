@@ -1,7 +1,24 @@
 <template>
-  <div id="app">
+  <div id="app" v-md-theme="'default'">
+    <!-- Topbar -->
+    <md-toolbar style="border-bottom: 2px solid #eee;">
+      <md-button class="md-icon-button" @click="toggleNavMenu">
+        <md-icon>menu</md-icon>
+      </md-button>
+
+      <h2 class="md-title" style="flex: 1">ept-idioms</h2>
+
+      <md-button class="md-icon-button">
+        <md-icon>favorite</md-icon>
+      </md-button>
+    </md-toolbar>
+
     <img src="./assets/logo.png">
+
+    <nav-menu ref="navMenu"></nav-menu>
+
     <hello></hello>
+
     <button v-on:click="changeColor">Click me</button>
   </div>
 </template>
@@ -9,13 +26,18 @@
 <script>
 import $ from 'jquery';
 import Hello from './components/Hello';
+import NavMenu from './components/NavMenu';
 
 export default {
   name: 'app',
   components: {
     Hello,
+    NavMenu,
   },
   methods: {
+    toggleNavMenu() {
+      this.$refs.navMenu.toggle();
+    },
     changeColor: function changeColor() {
       /* eslint-disable no-console */
       // console.log($(this.$el));
@@ -32,6 +54,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
