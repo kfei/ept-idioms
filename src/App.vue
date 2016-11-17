@@ -1,8 +1,11 @@
 <template>
   <div id="app" v-md-theme="'default'">
-    <top-bar :toggle-nav-menu="toggleNavMenu"></top-bar>
+    <top-bar
+      :toggle-nav-menu="toggleNavMenu"
+      :play-audio="playAudio"
+      :pause-audio="pauseAudio"></top-bar>
     <nav-menu ref="navMenu"></nav-menu>
-    <content-view></content-view>
+    <content-view ref="contentView"></content-view>
   </div>
 </template>
 
@@ -21,6 +24,12 @@ export default {
   methods: {
     toggleNavMenu() {
       this.$refs.navMenu.toggle();
+    },
+    playAudio() {
+      this.$refs.contentView.play();
+    },
+    pauseAudio() {
+      this.$refs.contentView.pause();
     },
   },
 };
