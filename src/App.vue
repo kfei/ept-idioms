@@ -17,7 +17,7 @@
 
     <nav-menu ref="navMenu"></nav-menu>
 
-    <hello></hello>
+    <content-view></content-view>
 
     <button v-on:click="changeColor">Click me</button>
   </div>
@@ -25,13 +25,13 @@
 
 <script>
 import $ from 'jquery';
-import Hello from './components/Hello';
+import ContentView from './components/ContentView';
 import NavMenu from './components/NavMenu';
 
 export default {
   name: 'app',
   components: {
-    Hello,
+    ContentView,
     NavMenu,
   },
   methods: {
