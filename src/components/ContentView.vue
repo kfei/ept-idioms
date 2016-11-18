@@ -20,6 +20,8 @@
 <script>
 import { mapGetters } from 'vuex';
 
+let $audioEle;
+
 export default {
   name: 'content-view',
   data() {
@@ -36,16 +38,26 @@ export default {
       'imageSrc',
     ]),
   },
+  watch: {
+    audioSrc: (newAudioSrc) => {
+      console.log(newAudioSrc);
+      $audioEle.pause();
+      $audioEle.load();
+    },
+  },
   methods: {
     toggleTranslation() {
       this.showText = !this.showText;
     },
     play() {
-      this.$el.querySelector('audio').play();
+      $audioEle.play();
     },
     pause() {
-      this.$el.querySelector('audio').pause();
+      $audioEle.pause();
     },
+  },
+  mounted() {
+    $audioEle = this.$el.querySelector('audio');
   },
 };
 </script>
