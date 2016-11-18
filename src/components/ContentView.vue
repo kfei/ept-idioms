@@ -1,6 +1,15 @@
 <template>
   <div class="content-view">
-    <h3>Content view</h3>
+    <ul>
+      <li class="title">above all</li>
+      <li class="narrator"><em>Above all</em>, we must finish the work at hand.</li>
+      <li class="title">after all</li>
+      <li class="narrator">Don't blame John for breaking that vase; he is a child <em>after all</em>.</li>
+      <li class="title">again and again</li>
+      <li class="narrator">The girl had to repeat that single phrase <em>again and again</em> to memorize it.</li>
+      <li class="title">all along</li>
+      <li class="narrator">Did you know that the radio was on <em>all along</em>?</li>
+    </ul>
     <audio>
       <source :src="audioURLPrefix + cls + part + '.mp3'" type="audio/mpeg">
     </audio>
@@ -38,11 +47,24 @@ h1, h2 {
 ul {
   list-style-type: none;
   padding: 0;
+  font-size: 1.2em;
 }
 
 li {
-  display: inline-block;
-  margin: 0 10px;
+  line-height: 1.5em;
+}
+
+li.title:not(:first-child) {
+  margin-top: 2em;
+}
+
+li.title {
+  font-weight: 700;
+  line-height: 2em;
+}
+
+li.narrator em {
+  text-decoration: underline;
 }
 
 a {
@@ -50,7 +72,6 @@ a {
 }
 
 .content-view {
-  background-color: #eee;
-  padding: 15em 0;
+  padding: 3em 1em;
 }
 </style>
