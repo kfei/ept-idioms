@@ -7,7 +7,7 @@
     </md-toolbar>
 
     <md-list>
-      <md-list-item>
+      <md-list-item @click="randomCls()">
         <md-icon>grain</md-icon>
         <span>Random</span>
       </md-list-item>
@@ -30,22 +30,36 @@
 
 <script>
 const MAXPART = 12;
-const MAXClASS = 10;
+const MAXCLASS = 10;
 
 export default {
   name: 'nav-menu',
   data() {
     return {
       maxPart: MAXPART,
-      maxClass: MAXClASS,
+      maxClass: MAXCLASS,
     };
   },
   methods: {
     toggle() {
       this.$refs.sideNav.toggle();
     },
+    randomCls() {
+      const randomInt = (min, max) => {
+        const lmin = Math.ceil(min);
+        const lmax = Math.floor(max);
+        return Math.floor(Math.random() * ((lmax - lmin) + 1)) + lmin;
+      };
+      this.$store.commit({
+        type: 'selectCls',
+        part: randomInt(1, MAXPART),
+        cls: randomInt(1, MAXCLASS),
+      });
+      this.$refs.sideNav.close();
+    },
     selectCls(p, c) {
-      this.$store.commit('selectCls', {
+      this.$store.commit({
+        type: 'selectCls',
         part: p,
         cls: c,
       });
