@@ -3,7 +3,8 @@
     <top-bar
       :toggle-nav-menu="toggleNavMenu"
       :play-audio="playAudio"
-      :pause-audio="pauseAudio"></top-bar>
+      :pause-audio="pauseAudio"
+      :toggle-translation="toggleTranslation"></top-bar>
     <nav-menu ref="navMenu"></nav-menu>
     <content-view ref="contentView"></content-view>
   </div>
@@ -24,6 +25,9 @@ export default {
   methods: {
     toggleNavMenu() {
       this.$refs.navMenu.toggle();
+    },
+    toggleTranslation() {
+      this.$refs.contentView.toggleTranslation();
     },
     playAudio() {
       this.$refs.contentView.play();

@@ -1,6 +1,6 @@
 <template>
   <div class="content-view">
-    <ul>
+    <ul v-if="showText">
       <li class="title">above all</li>
       <li class="narrator"><em>Above all</em>, we must finish the work at hand.</li>
       <li class="title">after all</li>
@@ -10,6 +10,7 @@
       <li class="title">all along</li>
       <li class="narrator">Did you know that the radio was on <em>all along</em>?</li>
     </ul>
+    <img v-if="showTranslation" :src="audioURLPrefix + cls + part + '.jpg'" class="translation" alt="translation">
     <audio>
       <source :src="audioURLPrefix + cls + part + '.mp3'" type="audio/mpeg">
     </audio>
@@ -26,9 +27,18 @@ export default {
       part: '01',
       cls: '01',
       audioURLPrefix,
+      showText: true,
     };
   },
+  computed: {
+    showTranslation() {
+      return !this.showText;
+    },
+  },
   methods: {
+    toggleTranslation() {
+      this.showText = !this.showText;
+    },
     play() {
       this.$el.querySelector('audio').play();
     },
@@ -46,7 +56,7 @@ h1, h2 {
 
 ul {
   list-style-type: none;
-  padding: 0;
+  padding: 0 1em;
   font-size: 1.2em;
 }
 
@@ -72,6 +82,12 @@ a {
 }
 
 .content-view {
-  padding: 3em 1em;
+  padding: 2em 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.content-view img.translation {
+  filter: grayscale(100%);
 }
 </style>

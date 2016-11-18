@@ -13,6 +13,9 @@
     <md-button class="md-icon-button" @click="pauseAudio">
       <md-icon>pause</md-icon>
     </md-button>
+    <md-button class="md-icon-button" @click="toggleTranslation">
+      <md-icon>translate</md-icon>
+    </md-button>
   </md-toolbar>
 </template>
 
@@ -21,6 +24,7 @@
     name: 'top-bar',
     props: [
       'toggleNavMenu',
+      'toggleTranslation',
       'playAudio',
       'pauseAudio',
     ],
