@@ -10,23 +10,20 @@
       <li class="title">all along</li>
       <li class="narrator">Did you know that the radio was on <em>all along</em>?</li>
     </ul>
-    <img v-if="showTranslation" :src="audioURLPrefix + cls + part + '.jpg'" class="translation" alt="translation">
+    <img v-if="showTranslation" :src="imageSrc" class="translation" alt="translation">
     <audio>
-      <source :src="audioURLPrefix + cls + part + '.mp3'" type="audio/mpeg">
+      <source :src="audioSrc" type="audio/mpeg">
     </audio>
   </div>
 </template>
 
 <script>
-const audioURLPrefix = 'https://s3-ap-northeast-1.amazonaws.com/kfei-app-assets/ept-idioms/';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'content-view',
   data() {
     return {
-      part: '01',
-      cls: '01',
-      audioURLPrefix,
       showText: true,
     };
   },
@@ -34,6 +31,10 @@ export default {
     showTranslation() {
       return !this.showText;
     },
+    ...mapGetters([
+      'audioSrc',
+      'imageSrc',
+    ]),
   },
   methods: {
     toggleTranslation() {

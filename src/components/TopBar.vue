@@ -4,7 +4,8 @@
       <md-icon>menu</md-icon>
     </md-button>
 
-    <h2 class="md-title" style="flex: 1">
+    <h2 class="md-title" style="flex: 1" @click="toggleNavMenu">
+      {{ part }} {{ cls }}
     </h2>
 
     <md-button class="md-icon-button" @click="playAudio">
@@ -20,13 +21,19 @@
 </template>
 
 <script>
-  export default {
-    name: 'top-bar',
-    props: [
-      'toggleNavMenu',
-      'toggleTranslation',
-      'playAudio',
-      'pauseAudio',
-    ],
-  };
+import { mapState } from 'vuex';
+
+export default {
+  name: 'top-bar',
+  props: [
+    'toggleNavMenu',
+    'toggleTranslation',
+    'playAudio',
+    'pauseAudio',
+  ],
+  computed: mapState([
+    'part',
+    'cls',
+  ]),
+};
 </script>

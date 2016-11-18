@@ -18,7 +18,7 @@
 
         <md-list-expand>
           <md-list>
-            <md-list-item class="md-inset" v-for="cls in maxClass">
+            <md-list-item class="md-inset" v-for="cls in maxClass" @click="selectCls(part, cls)">
               Class {{ cls }}
             </md-list-item>
           </md-list>
@@ -43,6 +43,13 @@ export default {
   methods: {
     toggle() {
       this.$refs.sideNav.toggle();
+    },
+    selectCls(p, c) {
+      this.$store.commit('selectCls', {
+        part: p,
+        cls: c,
+      });
+      this.$refs.sideNav.close();
     },
   },
 };
