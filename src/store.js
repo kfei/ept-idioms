@@ -1,10 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
-
-// inner html
-// isPlaying
 
 /* eslint-disable no-unused-vars */
 const ASSETS_PREFIX = 'https://s3-ap-northeast-1.amazonaws.com/kfei-app-assets/ept-idioms/';
@@ -16,6 +14,8 @@ const store = new Vuex.Store({
     part: '01',
     cls: '01',
     isPlaying: false,
+    textContent: '',
+    textReady: false,
   },
   getters: {
     audioSrc: state => `${ASSETS_PREFIX}${state.part}${state.cls}.mp3`,
@@ -31,6 +31,18 @@ const store = new Vuex.Store({
     },
     setPlaying(state, payload) {
       state.isPlaying = payload.isPlaying;
+    },
+    setTextContent(state, newTextContent) {
+      state.textContent = newTextContent;
+      state.textReady = true;
+    },
+  },
+  actions: {
+    fetchTextContent({ commit, state }) {
+      state.textReady = false;
+      axios.get(`${ASSETS_PREFIX}${state.part}${state.cls}.html`)
+        .then((res) => { commit('setTextContent', res.data); })
+        .catch((err) => { console.log(err); });
     },
   },
 });

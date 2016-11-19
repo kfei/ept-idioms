@@ -1,15 +1,7 @@
 <template>
   <div class="content-view">
-    <ul v-if="showText">
-      <li class="title">above all</li>
-      <li class="narrator"><em>Above all</em>, we must finish the work at hand.</li>
-      <li class="title">after all</li>
-      <li class="narrator">Don't blame John for breaking that vase; he is a child <em>after all</em>.</li>
-      <li class="title">again and again</li>
-      <li class="narrator">The girl had to repeat that single phrase <em>again and again</em> to memorize it.</li>
-      <li class="title">all along</li>
-      <li class="narrator">Did you know that the radio was on <em>all along</em>?</li>
-    </ul>
+    <h3 v-if="showText && !textReady">Fetching class text...</h3>
+    <ul v-if="showText && textReady" v-html="textContent"></ul>
     <img v-if="showTranslation" :src="imageSrc" class="translation" alt="translation">
     <audio>
       <source :src="audioSrc" type="audio/mpeg">
@@ -32,6 +24,12 @@ export default {
   computed: {
     showTranslation() {
       return !this.showText;
+    },
+    textContent() {
+      return this.$store.state.textContent;
+    },
+    textReady() {
+      return this.$store.state.textReady;
     },
     ...mapGetters([
       'audioSrc',
@@ -75,29 +73,6 @@ h1, h2 {
   font-weight: normal;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0 1em;
-  font-size: 1.2em;
-}
-
-li {
-  line-height: 1.5em;
-}
-
-li.title:not(:first-child) {
-  margin-top: 2em;
-}
-
-li.title {
-  font-weight: 700;
-  line-height: 2em;
-}
-
-li.narrator em {
-  text-decoration: underline;
-}
-
 a {
   color: #42b983;
 }
@@ -110,5 +85,32 @@ a {
 
 .content-view img.translation {
   filter: grayscale(100%);
+}
+</style>
+
+<style>
+.content-view ul {
+  list-style-type: none;
+  padding: 0 1em;
+  font-size: 1.2em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.content-view li {
+  line-height: 1.5em;
+}
+
+.content-view li.title:not(:first-child) {
+  margin-top: 2em;
+}
+
+.content-view li.title {
+  font-weight: 700;
+  line-height: 2em;
+}
+
+.content-view li.narrator em {
+  text-decoration: underline;
 }
 </style>

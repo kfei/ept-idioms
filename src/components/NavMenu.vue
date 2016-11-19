@@ -50,12 +50,7 @@ export default {
         const lmax = Math.floor(max);
         return Math.floor(Math.random() * ((lmax - lmin) + 1)) + lmin;
       };
-      this.$store.commit({
-        type: 'selectCls',
-        part: randomInt(1, MAXPART),
-        cls: randomInt(1, MAXCLASS),
-      });
-      this.$refs.sideNav.close();
+      this.selectCls(randomInt(1, MAXPART), randomInt(1, MAXCLASS));
     },
     selectCls(p, c) {
       this.$store.commit({
@@ -63,6 +58,7 @@ export default {
         part: p,
         cls: c,
       });
+      this.$store.dispatch('fetchTextContent');
       this.$refs.sideNav.close();
     },
   },
