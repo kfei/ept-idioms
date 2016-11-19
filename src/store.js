@@ -5,7 +5,6 @@ Vue.use(Vuex);
 
 // inner html
 // isPlaying
-// isStopped
 
 /* eslint-disable no-unused-vars */
 const ASSETS_PREFIX = 'https://s3-ap-northeast-1.amazonaws.com/kfei-app-assets/ept-idioms/';
@@ -16,6 +15,7 @@ const store = new Vuex.Store({
   state: {
     part: '01',
     cls: '01',
+    isPlaying: false,
   },
   getters: {
     audioSrc: state => `${ASSETS_PREFIX}${state.part}${state.cls}.mp3`,
@@ -28,6 +28,9 @@ const store = new Vuex.Store({
     selectCls(state, payload) {
       state.part = leftPadder(payload.part);
       state.cls = leftPadder(payload.cls);
+    },
+    setPlaying(state, payload) {
+      state.isPlaying = payload.isPlaying;
     },
   },
 });

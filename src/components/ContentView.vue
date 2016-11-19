@@ -39,10 +39,8 @@ export default {
     ]),
   },
   watch: {
-    audioSrc: (newAudioSrc) => {
-      console.log(newAudioSrc);
-      $audioEle.pause();
-      $audioEle.load();
+    audioSrc: function audioSrc() {
+      this.pause();
     },
   },
   methods: {
@@ -50,10 +48,20 @@ export default {
       this.showText = !this.showText;
     },
     play() {
-      $audioEle.play();
+      $audioEle.load();
+      // http://stackoverflow.com/a/9512994/2504317
+      $audioEle.oncanplaythrough = $audioEle.play();
+      this.$store.commit({
+        type: 'setPlaying',
+        isPlaying: true,
+      });
     },
     pause() {
       $audioEle.pause();
+      this.$store.commit({
+        type: 'setPlaying',
+        isPlaying: false,
+      });
     },
   },
   mounted() {

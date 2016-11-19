@@ -8,10 +8,10 @@
       {{ part }} {{ cls }}
     </h2>
 
-    <md-button class="md-icon-button" @click="playAudio">
+    <md-button v-if="!isPlaying" class="md-icon-button" @click="playAudio">
       <md-icon>play_arrow</md-icon>
     </md-button>
-    <md-button class="md-icon-button" @click="pauseAudio">
+    <md-button v-if="isPlaying" class="md-icon-button" @click="pauseAudio">
       <md-icon>pause</md-icon>
     </md-button>
     <md-button class="md-icon-button" @click="toggleTranslation">
@@ -34,6 +34,7 @@ export default {
   computed: mapState([
     'part',
     'cls',
+    'isPlaying',
   ]),
 };
 </script>
