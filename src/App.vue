@@ -36,6 +36,9 @@ export default {
       this.$refs.contentView.pause();
     },
   },
+  mounted() {
+    this.$refs.navMenu.randomCls();
+  },
 };
 </script>
 
