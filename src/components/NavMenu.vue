@@ -29,15 +29,14 @@
 </template>
 
 <script>
-const MAXPART = 12;
-const MAXCLASS = 10;
+import config from '../config';
 
 export default {
   name: 'nav-menu',
   data() {
     return {
-      maxPart: MAXPART,
-      maxClass: MAXCLASS,
+      maxPart: config.MAX_PART,
+      maxClass: config.MAX_CLASS,
     };
   },
   methods: {
@@ -50,7 +49,7 @@ export default {
         const lmax = Math.floor(max);
         return Math.floor(Math.random() * ((lmax - lmin) + 1)) + lmin;
       };
-      this.selectCls(randomInt(1, MAXPART), randomInt(1, MAXCLASS));
+      this.selectCls(randomInt(1, config.MAX_PART), randomInt(1, config.MAX_CLASS));
     },
     selectCls(p, c) {
       this.$store.commit({

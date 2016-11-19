@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import config from './config';
 
 Vue.use(Vuex);
 
 /* eslint-disable no-unused-vars */
-const ASSETS_PREFIX = 'https://s3-ap-northeast-1.amazonaws.com/kfei-app-assets/ept-idioms/';
 const leftPadder = n => `0${n}`.slice(-2);
 
 /* eslint-disable no-param-reassign */
@@ -18,8 +18,8 @@ const store = new Vuex.Store({
     textReady: false,
   },
   getters: {
-    audioSrc: state => `${ASSETS_PREFIX}${state.part}${state.cls}.mp3`,
-    imageSrc: state => `${ASSETS_PREFIX}${state.part}${state.cls}.jpg`,
+    audioSrc: state => `${config.ASSETS_PREFIX}${state.part}${state.cls}.mp3`,
+    imageSrc: state => `${config.ASSETS_PREFIX}${state.part}${state.cls}.jpg`,
   },
   mutations: {
     increment(state) {
@@ -40,7 +40,7 @@ const store = new Vuex.Store({
   actions: {
     fetchTextContent({ commit, state }) {
       state.textReady = false;
-      axios.get(`${ASSETS_PREFIX}${state.part}${state.cls}.html`)
+      axios.get(`${config.ASSETS_PREFIX}${state.part}${state.cls}.html`)
         .then((res) => { commit('setTextContent', res.data); })
         .catch((err) => { console.log(err); });
     },
