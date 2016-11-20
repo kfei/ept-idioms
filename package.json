@@ -1,7 +1,7 @@
 {
-  "name": "pj1",
+  "name": "ept-idioms",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "To fix EPT's sick web page",
   "author": "kfei",
   "private": true,
   "scripts": {

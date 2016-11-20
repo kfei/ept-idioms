@@ -1,6 +1,6 @@
-# pj1
+# ept-idioms
 
-> A Vue.js project
+> Fix EPT's sick web page.
 
 ## Build Setup
 
