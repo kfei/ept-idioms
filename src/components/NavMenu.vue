@@ -42,6 +42,7 @@ export default {
   methods: {
     toggle() {
       this.$refs.sideNav.toggle();
+      document.querySelector('.md-sidenav-content').scrollTop = 0;
     },
     randomCls() {
       const randomInt = (min, max) => {
@@ -70,5 +71,13 @@ export default {
 }
 .md-toolbar > a > img {
   max-height: 64px;
+}
+</style>
+
+<style>
+/* For unknown reason, the following style doesn't work when using `scoped` */
+.md-sidenav .md-sidenav-content {
+  position: fixed;
+  top: 0;
 }
 </style>

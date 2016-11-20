@@ -78,7 +78,7 @@ a {
 }
 
 .content-view {
-  padding: 2em 1em;
+  padding: 6em 1em 2em 1em;
   display: flex;
   justify-content: center;
 }
@@ -108,6 +108,8 @@ a {
 .content-view li.title {
   font-weight: 700;
   line-height: 2em;
+  font-size: 1.3em;
+  color: #128018;
 }
 
 .content-view li.narrator em {

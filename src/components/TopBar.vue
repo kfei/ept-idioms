@@ -38,3 +38,10 @@ export default {
   ]),
 };
 </script>
+
+<style scoped>
+.md-toolbar {
+  position: fixed;
+  width: 100%;
+}
+</style>
