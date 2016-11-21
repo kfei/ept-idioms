@@ -42,7 +42,9 @@ const store = new Vuex.Store({
       state.textReady = false;
       axios.get(`${config.ASSETS_PREFIX}${state.part}${state.cls}.html`)
         .then((res) => { commit('setTextContent', res.data); })
-        .catch((err) => { console.log(err); });
+        .catch((err) => {
+          // Do nothing now
+        });
     },
   },
 });
