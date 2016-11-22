@@ -1,4 +1,5 @@
 <template>
+  <!-- FIXME: Can we have components having no template? -->
   <div style="display: none;"></div>
 </template>
 
@@ -34,17 +35,15 @@ export default {
       this.setPlayingStatus(false);
     },
   },
-  mounted() {
-    sound = new Howl({
-      src: [this.audioSrc],
-    });
-  },
   watch: {
     audioSrc: function audioSrc() {
       this.setPlayingStatus(false);
-      sound.unload();
+      if (sound instanceof Howl) {
+        sound.unload();
+      }
       sound = new Howl({
         src: [this.audioSrc],
+        html5: true,
       });
     },
   },
