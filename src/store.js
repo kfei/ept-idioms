@@ -10,6 +10,8 @@ Vue.use(Vuex);
 /* The above line is for variable being used in template string */
 /* See also: https://github.com/eslint/eslint/issues/1542 */
 
+/* eslint-disable no-bitwise */
+
 const leftPadder = n => `0${n}`.slice(-2);
 
 const randomInt = (min, max) => {
@@ -64,6 +66,33 @@ const store = new Vuex.Store({
     selectCls(state, payload) {
       state.part = leftPadder(payload.part);
       state.cls = leftPadder(payload.cls);
+      saveHistory(state.part, state.cls);
+    },
+    selectPreviousCls(state) {
+      const currentPart = ~~state.part;
+      const currentCls = ~~state.cls;
+      if (currentCls === 1 && currentPart === 1) {
+        return;
+      } else if (currentCls === 1 && currentPart > 1) {
+        state.part = leftPadder(currentPart - 1);
+        state.cls = leftPadder(config.MAX_CLASS);
+      } else {
+        state.cls = leftPadder(currentCls - 1);
+      }
+      saveHistory(state.part, state.cls);
+    },
+    selectNextCls(state) {
+      const currentPart = ~~state.part;
+      const currentCls = ~~state.cls;
+      if (currentCls < config.MAX_CLASS) {
+        state.cls = leftPadder(currentCls + 1);
+      } else if (currentPart < config.MAX_PART) {
+        state.part = leftPadder(currentPart + 1);
+        state.cls = '01';
+      } else {
+        state.part = config.MAX_PART;
+        state.cls = config.MAX_CLASS;
+      }
       saveHistory(state.part, state.cls);
     },
     randomCls(state) {

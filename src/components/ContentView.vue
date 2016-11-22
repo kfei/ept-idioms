@@ -9,7 +9,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import Hammer from 'hammerjs';
 import AudioPlayer from './AudioPlayer';
+
+let mc;
 
 export default {
   name: 'content-view',
@@ -45,6 +48,23 @@ export default {
     pause() {
       this.$refs.audioPlayer.pause();
     },
+    previousCls() {
+      this.$store.commit('selectPreviousCls');
+      this.$store.dispatch('fetchTextContent');
+    },
+    nextCls() {
+      this.$store.commit('selectNextCls');
+      this.$store.dispatch('fetchTextContent');
+    },
+  },
+  mounted() {
+    mc = new Hammer.Manager(this.$el);
+    const Swipe = new Hammer.Swipe({
+      direction: Hammer.DIRECTION_HORIZONTAL,
+    });
+    mc.add(Swipe);
+    mc.on('swipeleft', this.nextCls);
+    mc.on('swiperight', this.previousCls);
   },
 };
 </script>
