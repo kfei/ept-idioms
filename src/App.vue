@@ -37,7 +37,7 @@ export default {
     },
   },
   mounted() {
-    this.$refs.navMenu.randomCls();
+    this.$store.dispatch('fetchTextContent');
   },
 };
 </script>

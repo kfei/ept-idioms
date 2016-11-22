@@ -45,12 +45,11 @@ export default {
       document.querySelector('.md-sidenav-content').scrollTop = 0;
     },
     randomCls() {
-      const randomInt = (min, max) => {
-        const lmin = Math.ceil(min);
-        const lmax = Math.floor(max);
-        return Math.floor(Math.random() * ((lmax - lmin) + 1)) + lmin;
-      };
-      this.selectCls(randomInt(1, config.MAX_PART), randomInt(1, config.MAX_CLASS));
+      this.$store.commit({
+        type: 'randomCls',
+      });
+      this.$store.dispatch('fetchTextContent');
+      this.$refs.sideNav.close();
     },
     selectCls(p, c) {
       this.$store.commit({
