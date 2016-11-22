@@ -3,19 +3,19 @@
     <h3 v-if="showText && !textReady">Fetching class text...</h3>
     <ul v-if="showText && textReady" v-html="textContent"></ul>
     <img v-if="showTranslation" :src="imageSrc" class="translation" alt="translation">
-    <audio>
-      <source :src="audioSrc" type="audio/mpeg">
-    </audio>
+    <audio-player ref="audioPlayer"></audio-player>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-
-let $audioEle;
+import AudioPlayer from './AudioPlayer';
 
 export default {
   name: 'content-view',
+  components: {
+    AudioPlayer,
+  },
   data() {
     return {
       showText: true,
@@ -32,38 +32,19 @@ export default {
       return this.$store.state.textReady;
     },
     ...mapGetters([
-      'audioSrc',
       'imageSrc',
     ]),
-  },
-  watch: {
-    audioSrc: function audioSrc() {
-      this.pause();
-    },
   },
   methods: {
     toggleTranslation() {
       this.showText = !this.showText;
     },
     play() {
-      $audioEle.load();
-      // http://stackoverflow.com/a/9512994/2504317
-      $audioEle.oncanplaythrough = $audioEle.play();
-      this.$store.commit({
-        type: 'setPlaying',
-        isPlaying: true,
-      });
+      this.$refs.audioPlayer.play();
     },
     pause() {
-      $audioEle.pause();
-      this.$store.commit({
-        type: 'setPlaying',
-        isPlaying: false,
-      });
+      this.$refs.audioPlayer.pause();
     },
-  },
-  mounted() {
-    $audioEle = this.$el.querySelector('audio');
   },
 };
 </script>
