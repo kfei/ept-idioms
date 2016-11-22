@@ -43,6 +43,7 @@ export default {
       }
       sound = new Howl({
         src: [this.audioSrc],
+        loop: true,
         html5: true,
       });
     },
