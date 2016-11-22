@@ -34,6 +34,16 @@ export default {
       sound.stop();
       this.setPlayingStatus(false);
     },
+    initSound() {
+      sound = new Howl({
+        src: [this.audioSrc],
+        loop: true,
+        html5: true,
+      });
+    },
+  },
+  mounted() {
+    this.initSound();
   },
   watch: {
     audioSrc: function audioSrc() {
@@ -41,11 +51,7 @@ export default {
       if (sound instanceof Howl) {
         sound.unload();
       }
-      sound = new Howl({
-        src: [this.audioSrc],
-        loop: true,
-        html5: true,
-      });
+      this.initSound();
     },
   },
 };
