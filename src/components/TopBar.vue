@@ -8,12 +8,15 @@
       {{ part }} {{ cls }}
     </h2>
 
+    <md-switch v-model="checked0" @change="toggleLight"></md-switch>
+
     <md-button v-if="!isPlaying" class="md-icon-button" @click="playAudio">
       <md-icon>play_arrow</md-icon>
     </md-button>
-    <md-button v-if="isPlaying" class="md-icon-button" @click="pauseAudio">
+    <md-button v-else class="md-icon-button" @click="pauseAudio">
       <md-icon>pause</md-icon>
     </md-button>
+
     <md-button class="md-icon-button" @click="toggleTranslation">
       <md-icon>translate</md-icon>
     </md-button>
@@ -25,9 +28,15 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'top-bar',
+  data() {
+    return {
+      checked0: false,
+    };
+  },
   props: [
     'toggleNavMenu',
     'toggleTranslation',
+    'toggleLight',
     'playAudio',
     'pauseAudio',
   ],
@@ -39,9 +48,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.md-toolbar {
-  position: fixed;
-  width: 100%;
-}
+<style lang="stylus" scoped>
+.md-toolbar
+  position fixed
+  width 100%
 </style>

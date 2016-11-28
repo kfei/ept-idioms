@@ -64,19 +64,14 @@ export default {
 };
 </script>
 
-<style scoped>
-.md-toolbar > a {
-  width: 100%;
-}
-.md-toolbar > a > img {
-  max-height: 64px;
-}
-</style>
-
-<style>
-/* For unknown reason, the following style doesn't work when using `scoped` */
-.md-sidenav .md-sidenav-content {
-  position: fixed;
-  top: 0;
-}
+<style lang="stylus">
+.md-sidenav
+  .md-sidenav-content
+    position fixed
+    top 0
+  .md-toolbar
+    a
+      width 100%
+      img
+        max-height 64px
 </style>

@@ -4,7 +4,8 @@
       :toggle-nav-menu="toggleNavMenu"
       :play-audio="playAudio"
       :pause-audio="pauseAudio"
-      :toggle-translation="toggleTranslation"></top-bar>
+      :toggle-translation="toggleTranslation"
+      :toggle-light="toggleLight"></top-bar>
     <nav-menu ref="navMenu"></nav-menu>
     <content-view ref="contentView"></content-view>
   </div>
@@ -29,6 +30,9 @@ export default {
     toggleTranslation() {
       this.$refs.contentView.toggleTranslation();
     },
+    toggleLight() {
+      this.$refs.contentView.toggleLight();
+    },
     playAudio() {
       this.$refs.contentView.play();
     },
@@ -42,15 +46,12 @@ export default {
 };
 </script>
 
-<style>
-body {
-  background-color: #f7f7f7;
-}
-
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
+<style lang="stylus">
+body
+  background-color #f7f7f7
+#app
+  font-family 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  color #2c3e50
 </style>

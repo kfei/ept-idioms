@@ -1,5 +1,5 @@
 <template>
-  <div class="content-view">
+  <div class="content-view" v-bind:class="{ 'light-off': lightOff }">
     <h3 v-if="showText && !textReady">Fetching class text...</h3>
     <ul v-if="showText && textReady" v-html="textContent"></ul>
     <img v-if="showTranslation" :src="imageSrc" class="translation" alt="translation">
@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       showText: true,
+      lightOff: false,
     };
   },
   computed: {
@@ -43,6 +44,10 @@ export default {
     toggleTranslation() {
       this.showText = !this.showText;
     },
+    toggleLight() {
+      this.lightOff = !this.lightOff;
+      document.body.style.backgroundColor = this.lightOff ? '#333' : '#f7f7f7';
+    },
     play() {
       this.$refs.audioPlayer.play();
     },
@@ -59,6 +64,7 @@ export default {
     },
   },
   mounted() {
+    // Enable swipe gesture on mobile devices
     if (is.mobile()) {
       mc = new Hammer.Manager(this.$el);
       const Swipe = new Hammer.Swipe({
@@ -72,51 +78,46 @@ export default {
 };
 </script>
 
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+<style lang="stylus">
+.content-view
+  padding 6em 1em 2em 1em
+  display flex
+  justify-content center
 
-a {
-  color: #42b983;
-}
+  ul
+    list-style-type none
+    padding 0 1em
+    font-size 1.2em
+    margin-top 0
+    margin-bottom 0
 
-.content-view {
-  padding: 6em 1em 2em 1em;
-  display: flex;
-  justify-content: center;
-}
+    li
+      line-height 1.5em
+    li.title
+      font-weight 700
+      line-height 2em
+      font-size 1.3em
+      color #269c2c
+      &:not(:first-child)
+        margin-top 1.5em
+    li.narrator
+      em
+        text-decoration underline
+    &.light-off
+      li.title
+        color #89de8e
+      li.narrator
+        color white
 
-.content-view img.translation {
-  filter: grayscale(100%);
-}
-</style>
+  img.translation
+    filter grayscale(100%)
 
-<style>
-.content-view ul {
-  list-style-type: none;
-  padding: 0 1em;
-  font-size: 1.2em;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.content-view li {
-  line-height: 1.5em;
-}
-
-.content-view li.title:not(:first-child) {
-  margin-top: 2em;
-}
-
-.content-view li.title {
-  font-weight: 700;
-  line-height: 2em;
-  font-size: 1.3em;
-  color: #128018;
-}
-
-.content-view li.narrator em {
-  text-decoration: underline;
-}
+  &.light-off
+    ul
+      li.title
+        color #89de8e
+      li.narrator
+        color white
+    img.translation
+      filter grayscale(100%) invert(100%)
 </style>

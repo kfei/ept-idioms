@@ -7,7 +7,7 @@ import store from './store';
 Vue.use(VueMaterial);
 Vue.material.theme.register('default', {
   primary: 'white',
-  accent: 'pink',
+  accent: 'black',
 });
 
 /* eslint-disable no-new */
