@@ -10,6 +10,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import Hammer from 'hammerjs';
+import Mousetrap from 'mousetrap';
 import is from 'is_js';
 import AudioPlayer from './AudioPlayer';
 
@@ -64,8 +65,8 @@ export default {
     },
   },
   mounted() {
-    // Enable swipe gesture on mobile devices
     if (is.mobile()) {
+      // Enable swipe gesture on mobile devices
       mc = new Hammer.Manager(this.$el);
       const Swipe = new Hammer.Swipe({
         direction: Hammer.DIRECTION_HORIZONTAL,
@@ -73,6 +74,10 @@ export default {
       mc.add(Swipe);
       mc.on('swipeleft', this.nextCls);
       mc.on('swiperight', this.previousCls);
+    } else {
+      // Enable keyboard shortcut on desktop
+      Mousetrap.bind('left', this.previousCls);
+      Mousetrap.bind('right', this.nextCls);
     }
   },
 };
