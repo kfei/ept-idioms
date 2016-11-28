@@ -10,6 +10,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import Hammer from 'hammerjs';
+import is from 'is_js';
 import AudioPlayer from './AudioPlayer';
 
 let mc;
@@ -58,13 +59,15 @@ export default {
     },
   },
   mounted() {
-    mc = new Hammer.Manager(this.$el);
-    const Swipe = new Hammer.Swipe({
-      direction: Hammer.DIRECTION_HORIZONTAL,
-    });
-    mc.add(Swipe);
-    mc.on('swipeleft', this.nextCls);
-    mc.on('swiperight', this.previousCls);
+    if (is.mobile()) {
+      mc = new Hammer.Manager(this.$el);
+      const Swipe = new Hammer.Swipe({
+        direction: Hammer.DIRECTION_HORIZONTAL,
+      });
+      mc.add(Swipe);
+      mc.on('swipeleft', this.nextCls);
+      mc.on('swiperight', this.previousCls);
+    }
   },
 };
 </script>
